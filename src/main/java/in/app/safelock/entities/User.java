@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name="user")
+@Entity(name = "user")
 @Table(name = "users")
 @Getter
 @Setter
@@ -35,15 +35,15 @@ public class User {
     private long userId;
 
     @Column(name = "user_name", nullable = false)
-    private String userName;
+    private String name;
 
     @Column(name = "email_id", nullable = false, unique = true)
-    private String emailId;
+    private String email;
 
     @Column(name = "phone_no", length = 30)
     private String phoneNo;
 
-    @Column(name="password", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "profile_pic", length = 1000)
@@ -54,7 +54,6 @@ public class User {
     private boolean isEmailVerified = false;
     private boolean isPhoneVerified = false;
 
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Credential> credential = new ArrayList<>();
 
@@ -62,6 +61,5 @@ public class User {
     // SELF, GOOGLE, FACEBOOK, TWITTER, LINKEDIN, GITHUB
     private Provider provider = Provider.SELF;
     private String providerUserId;
-
 
 }
