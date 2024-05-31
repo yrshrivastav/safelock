@@ -12,7 +12,22 @@
  
 <div id="content" class="p-4 flex flex-col items-center justify-center" x-data="{show: false, password: '',}">
       <div class="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow dark:border dark:border-gray-700 text-gray-800 dark:bg-gray-800 dark:text-white">
+
+        <!-- message here -->
+        <div data-th-replace="message::messagebox"></div>
+
         <h1 class=" leading-tight tracking-tight text-gray-900  dark:text-white text-2xl font-bold text-center">Sign In</h1>
+
+        <div class="text-red-600 text-center my-3" th:if="${param.error}">
+          Invalid username or password
+        </div>
+        <div
+          class="text-green-600 text-center my-3"
+          th:if="${param.logout}"
+        >
+          You have been logged out
+        </div>
+
         <form  action="/login" method="post" class="space-y-6">
           <!-- Email or Username -->
           <div class="space-y-1 text-sm">

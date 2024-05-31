@@ -1,7 +1,12 @@
 package in.app.safelock.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,6 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +33,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +49,7 @@ public class User {
     @Column(name = "phone_no", length = 30)
     private String phoneNo;
 
+    @Getter(value = AccessLevel.NONE)
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -50,6 +57,7 @@ public class User {
     private String profilePic;
 
     // Account information
+    @Getter(value = AccessLevel.NONE)
     private boolean isEnabled = true;
     private boolean isEmailVerified = false;
     private boolean isPhoneVerified = false;
@@ -61,5 +69,35 @@ public class User {
     // SELF, GOOGLE, FACEBOOK, TWITTER, LINKEDIN, GITHUB
     private Provider provider = Provider.SELF;
     private String providerUserId;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList();
+    }
+    @Override
+    public String getUsername() {
+       return this.email;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+    @Override
+    public boolean isEnabled() {
+        return this.isEnabled;
+    }
 
 }

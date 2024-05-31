@@ -46,13 +46,17 @@ public class SafeLockController {
         return "contact";
     }
 
-    @PostMapping("/login")
-    public String loginPageProcess() {
-        return "login";
-    }
+    // @PostMapping("/login")
+    // public String loginPageProcess() {
+    //     return "login";
+    // }
+    // @GetMapping("/login")
+    // public String loginPage() {
+    //     return "login";
+    // }
     @GetMapping("/login")
     public String loginPage() {
-        return "login";
+        return new String("login");
     }
 
     @PostMapping("/register")

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import in.app.safelock.entities.User;
@@ -19,8 +20,8 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     private UserRepo userRepo;
 
-    // @Autowired
-    // private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // Logger to check for logs
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -28,9 +29,8 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User saveUser(User user) {
         
-        
         //password encrypted
-        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         //set the profile picture to default 
         return userRepo.save(user);
     }
