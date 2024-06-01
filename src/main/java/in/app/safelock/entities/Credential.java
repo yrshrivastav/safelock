@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Credential {
 
     @Id
-    @Column(name = "cred_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -32,8 +32,10 @@ public class Credential {
 
     private String username;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     @Column(name = "notes", length = 1000)
