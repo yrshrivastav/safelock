@@ -1,5 +1,5 @@
 package in.app.safelock.entities;
 
 public enum Provider {
-    SELF, GOOGLE, FACEBOOK, LINKEDIN, APPLE, MICROSOFT
+    SELF, GOOGLE, FACEBOOK, LINKEDIN, APPLE, MICROSOFT, GITHUB
 }

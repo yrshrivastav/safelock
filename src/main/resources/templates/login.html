@@ -1,115 +1,134 @@
 <!-- Login Page -->
 <!DOCTYPE html>
-<html
-  lang="en"
-  th:replace="~{index :: parent(~{::#content},~{::title},~{::script})}"
->
-  <head>
-    <title>Sign In</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
-  </head>
-  <body>
- 
-<div id="content" class="p-4 flex flex-col items-center justify-center" x-data="{show: false, password: '',}">
-      <div class="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow dark:border dark:border-gray-700 text-gray-800 dark:bg-gray-800 dark:text-white">
+<html lang="en" th:replace="~{index :: parent(~{::#content},~{::title},~{::script})}">
 
-        <!-- message here -->
-        <div data-th-replace="message::messagebox"></div>
+<head>
+  <title>Sign In</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+</head>
 
-        <h1 class=" leading-tight tracking-tight text-gray-900  dark:text-white text-2xl font-bold text-center">Sign In</h1>
+<body>
 
-        <div class="text-red-600 text-center my-3" th:if="${param.error}">
-          Invalid username or password
+  <div id="content" class="p-4 flex flex-col items-center justify-center" x-data="{show: false, password: '',}">
+    <div
+      class="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow dark:border dark:border-gray-700 text-gray-800 dark:bg-gray-800 dark:text-white">
+
+      <!-- message here -->
+      <div data-th-replace="message::messagebox"></div>
+
+      <h1 class=" leading-tight tracking-tight text-gray-900  dark:text-white text-2xl font-bold text-center">Sign In
+      </h1>
+
+      <div class="text-red-600 text-center my-3" th:if="${param.error}">
+        Invalid username or password
+      </div>
+      <div class="text-green-600 text-center my-3" th:if="${param.logout}">
+        You have been logged out
+      </div>
+
+      <form action="/login" method="post" class="space-y-6">
+        <!-- Email or Username -->
+        <div class="space-y-1 text-sm">
+          <label for="email" class="block text-gray-900  dark:text-white">Email</label>
+          <input type="email" name="email" id="email" placeholder="name@company.com"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required="">
         </div>
-        <div
-          class="text-green-600 text-center my-3"
-          th:if="${param.logout}"
-        >
-          You have been logged out
-        </div>
+        <!-- Password starts -->
 
-        <form  action="/login" method="post" class="space-y-6">
-          <!-- Email or Username -->
-          <div class="space-y-1 text-sm">
-            <label for="email" class="block text-gray-900  dark:text-white">Email</label>
-            <input type="email" name="email" id="email" placeholder="name@company.com" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-          </div>
-          <!-- Password starts -->
-
-          <div class="space-y-1 text-sm relative" >
-            <label for="password" class="block text-gray-900  dark:text-white">Password</label>
-            <input :type="show ? 'text' : 'password' " x-model="password"  name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-            <button @click.prevent="show = !show" class="absolute inline-block right-2 top-1/2 transform -translate-y-5">
-                <!-- SVGs here -->
-        <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="green" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-                      </svg>
-                      <svg x-show="show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="red" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-            </button>
-            <div class="flex justify-end pt-4 text-xs text-gray-900  dark:text-white">
-                <a rel="noopener noreferrer" href="#">Forgot Password?</a>
-            </div>
-        </div>
-          <!-- Password ends -->
-          <button class="block w-full p-3 text-center rounded-sm text-gray-900  dark:text-white font-bold dark:bg-lime-600">Sign in</button>
-        </form>
-        <div class="flex items-center pt-4 space-x-1">
-          <div class="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-          <p class="px-3 text-sm text-gray-900  dark:text-white">Sign in with social accounts</p>
-          <div class="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-        </div>
-        <div class="flex justify-center space-x-4">
-          <!-- Google -->
-          <a rel="noopener noreferrer" href="#" title="Gmail" class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
-              <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
+        <div class="space-y-1 text-sm relative">
+          <label for="password" class="block text-gray-900  dark:text-white">Password</label>
+          <input :type="show ? 'text' : 'password' " x-model="password" name="password" id="password"
+            placeholder="••••••••"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required="">
+          <button @click.prevent="show = !show" class="absolute inline-block right-2 top-1/2 transform -translate-y-5">
+            <!-- SVGs here -->
+            <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="green" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
             </svg>
-          </a>
-          <!-- <button aria-label="Log in with Google" class="p-3 rounded-sm">
+            <svg x-show="show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="red" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div class="flex justify-end pt-4 text-xs text-gray-900  dark:text-white">
+            <a rel="noopener noreferrer" href="#">Forgot Password?</a>
+          </div>
+        </div>
+        <!-- Password ends -->
+        <button
+          class="block w-full p-3 text-center rounded-sm text-gray-900  dark:text-white font-bold dark:bg-lime-600">Sign
+          in</button>
+      </form>
+      <div class="flex items-center pt-4 space-x-1">
+        <div class="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
+        <p class="px-3 text-sm text-gray-900  dark:text-white">Sign in with social accounts</p>
+        <div class="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
+      </div>
+      <div class="flex justify-center space-x-4">
+        <!-- Google -->
+        <a rel="noopener noreferrer" data-th-href="@{'/oauth2/authorization/google'}" title="Google"
+          class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
+            <path
+              d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z">
+            </path>
+          </svg>
+        </a>
+        <!-- <button aria-label="Log in with Google" class="p-3 rounded-sm">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
               <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
             </svg>
           </button> -->
 
-          <!-- <button aria-label="Log in with Twitter" class="p-3 rounded-sm">
+        <!-- <button aria-label="Log in with Twitter" class="p-3 rounded-sm">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
               <path d="M31.937 6.093c-1.177 0.516-2.437 0.871-3.765 1.032 1.355-0.813 2.391-2.099 2.885-3.631-1.271 0.74-2.677 1.276-4.172 1.579-1.192-1.276-2.896-2.079-4.787-2.079-3.625 0-6.563 2.937-6.563 6.557 0 0.521 0.063 1.021 0.172 1.495-5.453-0.255-10.287-2.875-13.52-6.833-0.568 0.964-0.891 2.084-0.891 3.303 0 2.281 1.161 4.281 2.916 5.457-1.073-0.031-2.083-0.328-2.968-0.817v0.079c0 3.181 2.26 5.833 5.26 6.437-0.547 0.145-1.131 0.229-1.724 0.229-0.421 0-0.823-0.041-1.224-0.115 0.844 2.604 3.26 4.5 6.14 4.557-2.239 1.755-5.077 2.801-8.135 2.801-0.521 0-1.041-0.025-1.563-0.088 2.917 1.86 6.36 2.948 10.079 2.948 12.067 0 18.661-9.995 18.661-18.651 0-0.276 0-0.557-0.021-0.839 1.287-0.917 2.401-2.079 3.281-3.396z"></path>
             </svg>
           </button> -->
-          <!-- Facebook -->
-          <a rel="noopener noreferrer" href="#" title="Facebook" class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
+        <!-- Facebook -->
+        <!-- <a rel="noopener noreferrer" href="#" title="Facebook" class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
                     <path d="M32 16c0-8.839-7.167-16-16-16-8.839 0-16 7.161-16 16 0 7.984 5.849 14.604 13.5 15.803v-11.177h-4.063v-4.625h4.063v-3.527c0-4.009 2.385-6.223 6.041-6.223 1.751 0 3.584 0.312 3.584 0.312v3.937h-2.021c-1.984 0-2.604 1.235-2.604 2.5v3h4.437l-0.713 4.625h-3.724v11.177c7.645-1.199 13.5-7.819 13.5-15.803z"></path>
                   </svg>
-          </a>
-          <!-- Github -->
-          <!-- <button aria-label="Log in with GitHub" class="p-3 rounded-sm">
+          </a> -->
+        <!-- Github -->
+
+        <a rel="noopener noreferrer" data-th-href="@{'/oauth2/authorization/github'}" title="Github"
+          class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
+            <path
+              d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z">
+            </path>
+          </svg>
+        </a>
+
+        <!-- <button aria-label="Log in with GitHub" class="p-3 rounded-sm">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
               <path d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"></path>
             </svg>
           </button> -->
-          <!-- Apple -->
-          <a rel="noopener noreferrer" href="#" title="Apple" class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
+        <!-- Apple -->
+        <!-- <a rel="noopener noreferrer" href="#" title="Apple" class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
             <img fill="currentColor" viewBox="0 0 32 32" class="w-5 h-5 fill-current"
             data-th-src="@{'/images/apple-black.svg'}" alt=""   
              />
-        </a>
-        
+        </a> -->
 
-        </div>
-        <p class="text-xs text-center sm:px-6 text-gray-900  dark:text-white">Don't have an account?
-          <a rel="noopener noreferrer" data-th-href="@{'/register'}" class="underline text-gray-900  dark:text-white">Sign up</a>
-        </p>
+
       </div>
+      <p class="text-xs text-center sm:px-6 text-gray-900  dark:text-white">Don't have an account?
+        <a rel="noopener noreferrer" data-th-href="@{'/register'}" class="underline text-gray-900  dark:text-white">Sign
+          up</a>
+      </p>
+    </div>
 
-      <!-- <section class="bg-white">
+    <!-- <section class="bg-white">
         <div class="grid grid-cols-1 lg:grid-cols-2">
             <div class="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
                 <div class="absolute inset-0">
@@ -214,10 +233,11 @@
             </div>
         </div>
     </section>  -->
-    
+
   </div>
-    <script>
-        console.log("Login page");
-      </script>
-  </body>
+  <script>
+    console.log("Login page");
+  </script>
+</body>
+
 </html>

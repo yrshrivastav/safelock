@@ -17,39 +17,34 @@
 
             <h1 class=" leading-tight tracking-tight text-gray-900  dark:text-white text-2xl font-bold text-center">Sign
                 Up</h1>
-                
+
             <!-- message alert here -->
             <div data-th-replace="~{message::messagebox}"></div>
-            
-            <form data-th-action="@{'/register'}" method="post" data-th-object="${userForm}" class="space-y-6" >
+
+            <form data-th-action="@{'/register'}" method="post" data-th-object="${userForm}" class="space-y-6">
                 <div class="space-y-1 text-sm">
                     <label for="name" class="block text-gray-900  dark:text-white">Name</label>
                     <input type="text" data-th-field="*{name}" name="name" id="name" placeholder="John Wick"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
-                    
+
                 </div>
                 <div class="space-y-1 text-sm">
                     <label for="email" class="block text-gray-900  dark:text-white">Email</label>
-                    <input type="email" name="email" id="email" 
-                    data-th-field="*{email}"
-                    placeholder="name@company.com"
+                    <input type="email" name="email" id="email" data-th-field="*{email}" placeholder="name@company.com"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
                 <div class="space-y-1 text-sm">
                     <label for="phone" class="block text-gray-900  dark:text-white">Phone</label>
-                    <input type="phone" name="phoneNo" id="phone" 
-                    data-th-field="*{phoneNo}"
-                    placeholder="9876543210"
+                    <input type="phone" name="phoneNo" id="phone" data-th-field="*{phoneNo}" placeholder="9876543210"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
                 <div class="space-y-1 text-sm relative">
                     <label for="password" class="block text-gray-900  dark:text-white">Password</label>
-                        <input :type="show ? 'text' : 'password' " x-model="password" name="password" id="password"
-                        data-th-field="*{password}"
-                        placeholder="••••••••"
+                    <input :type="show ? 'text' : 'password' " x-model="password" name="password" id="password"
+                        data-th-field="*{password}" placeholder="••••••••"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                     <button @click.prevent="show = !show"
@@ -70,7 +65,6 @@
                     </button>
                 </div>
                 <button
-                    
                     class="block w-full p-3 text-center rounded-sm text-gray-900  dark:text-white font-bold dark:bg-lime-600">Sign
                     up</button>
             </form>
@@ -83,7 +77,7 @@
 
 
                 <!-- Google -->
-                <a rel="noopener noreferrer" href="#" title="Gmail"
+                <a rel="noopener noreferrer" data-th-href="@{'/oauth2/authorization/google'}" title="Google"
                     class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32"
                         class="w-5 h-5 fill-current">
@@ -93,8 +87,19 @@
                     </svg>
                 </a>
 
+                <!-- Github -->
+
+                <a rel="noopener noreferrer" data-th-href="@{'/oauth2/authorization/github'}" title="Github"
+                    class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
+                        <path
+                            d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z">
+                        </path>
+                    </svg>
+                </a>
+
                 <!-- Facebook -->
-                <a rel="noopener noreferrer" href="#" title="Facebook"
+                <!-- <a rel="noopener noreferrer" href="#" title="Facebook"
                     class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32"
                         class="w-5 h-5 fill-current">
@@ -102,14 +107,14 @@
                             d="M32 16c0-8.839-7.167-16-16-16-8.839 0-16 7.161-16 16 0 7.984 5.849 14.604 13.5 15.803v-11.177h-4.063v-4.625h4.063v-3.527c0-4.009 2.385-6.223 6.041-6.223 1.751 0 3.584 0.312 3.584 0.312v3.937h-2.021c-1.984 0-2.604 1.235-2.604 2.5v3h4.437l-0.713 4.625h-3.724v11.177c7.645-1.199 13.5-7.819 13.5-15.803z">
                         </path>
                     </svg>
-                </a>
+                </a> -->
 
                 <!-- Apple -->
-                <a rel="noopener noreferrer" href="#" title="Apple"
+                <!-- <a rel="noopener noreferrer" href="#" title="Apple"
                     class="flex items-center justify-center w-10 h-10 rounded-full sm:w-10 sm:h-10 dark:bg-lime-600 dark:text-gray-50">
                     <img fill="currentColor" viewBox="0 0 32 32" class="w-5 h-5 fill-current"
                         data-th-src="@{'/images/apple-black.svg'}" alt="" />
-                </a>
+                </a> -->
 
 
 
