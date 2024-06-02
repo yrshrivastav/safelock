@@ -28,7 +28,7 @@ public class Credential {
     private long id;
 
     @Column(nullable = false)
-    private String serviceName;
+    private String name;
 
     private String username;
 

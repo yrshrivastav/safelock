@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CredentialsForm {
 
-    private String serviceName;
+    private String Name;
 
     private String username;
 

@@ -18,4 +18,6 @@ public interface CredentialsService {
     void delete(long id);
     List<Credential> getAll();
     Page<Credential> searchByEmail(String emailKeyword, int size, int page, String sortBy, String order, User user);
+    List<Credential> getByUser(User user);
+    Page<Credential> getByUser(User user, int page, int size, String sortField, String sortDirection);
 }

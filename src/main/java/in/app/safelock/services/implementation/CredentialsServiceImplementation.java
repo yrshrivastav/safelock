@@ -51,7 +51,7 @@ public class CredentialsServiceImplementation implements CredentialsService {
     public Page<Credential> searchByServiceName(String serviceNameKeyword, int size, int page, String sortBy, String order, User user){
         Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
         var pageable = PageRequest.of(page, size, sort);
-        return credentialsRepo.findByUserAndServiceNameContaining(user, serviceNameKeyword, pageable);
+        return credentialsRepo.findByUserAndNameContaining(user, serviceNameKeyword, pageable);
     }
 
     @Override
@@ -73,5 +73,22 @@ public class CredentialsServiceImplementation implements CredentialsService {
         var pageable = PageRequest.of(page, size, sort);
         return credentialsRepo.findByUserAndEmailContaining(user, emailKeyword, pageable);
     }
+
+    @Override
+    public List<Credential> getByUser(User user) {
+        return credentialsRepo.findByUser(user);
+    }
+
+    @Override
+    public Page<Credential> getByUser(User user, int page, int size, String sortBy, String direction) {
+
+        Sort sort = direction.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+
+        var pageable = PageRequest.of(page, size, sort);
+
+        return credentialsRepo.findByUser(user, pageable);
+
+    }
+
 
 }

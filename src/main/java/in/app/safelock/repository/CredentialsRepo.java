@@ -23,7 +23,11 @@ public interface CredentialsRepo extends JpaRepository<Credential, Long>{
     // @Query("SELECT c FROM Credential c WHERE c.user.id = :userId")
     // Optional<Credential> findById(@Param("userId") long userId);
 
-    Page<Credential> findByUserAndServiceNameContaining(User user, String serviceNamekeyword, Pageable pageable);
+    Page<Credential> findByUserAndNameContaining(User user, String serviceNamekeyword, Pageable pageable);
 
     Page<Credential> findByUserAndEmailContaining(User user, String emailkeyword, Pageable pageable);
+
+    List<Credential> findByUser(User user);
+
+    // List<Credential> findByServiceName(String serviceName);
 }
