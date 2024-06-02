@@ -13,6 +13,7 @@ import in.app.safelock.entities.Credential;
 import in.app.safelock.entities.User;
 import in.app.safelock.repository.CredentialsRepo;
 import in.app.safelock.services.CredentialsService;
+import in.app.safelock.services.RSAEncryptPassword;
 import in.app.safelock.support.ResourceNotFoundException;
 
 @Service
@@ -21,8 +22,19 @@ public class CredentialsServiceImplementation implements CredentialsService {
     @Autowired
     private CredentialsRepo credentialsRepo;
 
+    @Autowired
+    private RSAEncryptPassword rsa;
+
     @Override
     public Credential save(Credential credential) {
+        // yaha pe ham rsa encrypt to call kareke password encrypt karenge
+        String pass=credential.getPassword();
+        try {
+            credential.setPassword(rsa.encrypt(pass));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return credentialsRepo.save(credential);
     }
 
