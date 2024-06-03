@@ -14,11 +14,62 @@
         <div th:if="${loggedInUser}">
             <div data-th-replace="~{user/sidebar :: sidebar}"></div>
         </div>
-        <!-- <h1>Welcome to dashboard page</h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
-            ratione!
-        </p> -->
+        <div class="p-4 sm:ml-64">
+
+            <div x-data="{ isOpen: true }" class="relative flex justify-center mt-20">
+            
+        
+                <div x-show="isOpen"
+                    x-transition:enter="transition duration-300 ease-out"
+                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                    x-transition:leave="transition duration-150 ease-in"
+                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                    class="fixed inset-0 z-10 overflow-y-auto" 
+                    style="top:10%"
+                    aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                >
+                    <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                
+                        <div class="relative inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:max-w-sm rounded-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:p-6">
+                            <div class="flex items-center justify-center mx-auto">
+                                <img class="h-full rounded-lg" data-th-src="@{*{profilePic}}" />
+                            </div>
+            
+                            <div class="mt-5 text-center">
+                                <h3 class="text-lg font-medium text-gray-800 dark:text-white" id="modal-title">
+                                    Welcome to SafeLock
+                                </h3>
+            
+                                
+                            </div>
+            
+                            <div class="flex items-center justify-between w-full mt-5 gap-x-2">
+                                
+                            </div>
+            
+                            <div class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
+                                <a data-th-href="@{'/user/credentials/add'}"
+                                class="px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                                <i class="fa-solid fa-plus h-4 w-5"></i>    
+                                Add Credential
+                                </a>
+            
+                                <a data-th-href="@{'/user/credentials/manage'}"
+                                class="px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                                <i class="fa-regular fa-address-book h-4 w-5"></i>    
+                                View All
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
     </div>
     <script>
         console.log("dashboard page");

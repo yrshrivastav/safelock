@@ -72,7 +72,7 @@ public class SafeLockController {
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
         user.setPhoneNo(userForm.getPhoneNo());
-        user.setProfilePic("static/images/default_user.jpg");
+        user.setProfilePic("D:\\Project\\Java\\safelock\\src\\main\\resources\\static\\images\\default_user.jpg");
 
         User savedUser = userService.saveUser(user);
 

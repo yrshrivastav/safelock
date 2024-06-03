@@ -28,13 +28,7 @@ public class CredentialsServiceImplementation implements CredentialsService {
     @Override
     public Credential save(Credential credential) {
         // yaha pe ham rsa encrypt to call kareke password encrypt karenge
-        String pass=credential.getPassword();
-        try {
-            credential.setPassword(rsa.encrypt(pass));
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
         return credentialsRepo.save(credential);
     }
 
@@ -86,10 +80,7 @@ public class CredentialsServiceImplementation implements CredentialsService {
         return credentialsRepo.findByUserAndEmailContaining(user, emailKeyword, pageable);
     }
 
-    @Override
-    public List<Credential> getByUser(User user) {
-        return credentialsRepo.findByUser(user);
-    }
+    
 
     @Override
     public Page<Credential> getByUser(User user, int page, int size, String sortBy, String direction) {

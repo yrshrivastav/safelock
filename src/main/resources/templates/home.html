@@ -1,22 +1,42 @@
 <!-- Home Page -->
 <!DOCTYPE html>
-<html
-  lang="en"
-  th:replace="~{index :: parent(~{::#content},~{::title},~{::script})}"
->
-  <head>
-    <title>Home</title>
-  </head>
-  <body>
-    <div id="content">
-      <h1>Welcome to home page</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
-        ratione!
-      </p>
+<html lang="en" th:replace="~{index :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+  <title>Home</title>
+</head>
+
+<body>
+  <div id="content">
+
+    <!-- user is logged in : sidebar -->
+
+    <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/sidebar :: sidebar}"></div>
     </div>
-    <script>
-        console.log("Home page");
-      </script>
-  </body>
+
+    
+      <div class="container well-lg flex justify-center" id="body_content">
+
+
+
+        <div class="text-content text-2xl mt-20">
+          <br>
+          <br>
+          <br>
+          <p>Welcome to secure password manager</p>
+          <br>
+          <a>User friendly + Secure + Convenient </a>
+
+        </div>
+
+
+      </div>
+    
+  </div>
+  <script>
+    console.log("Home page");
+  </script>
+</body>
+
 </html>
