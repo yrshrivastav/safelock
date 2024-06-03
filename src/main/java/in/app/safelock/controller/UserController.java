@@ -1,5 +1,8 @@
 package in.app.safelock.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,9 @@ public class UserController {
         String username = Support.getEmailOfLoggedInUser(authentication);
 
         User user = userservice.getUserByEmail(username);
+    // adding for profile
+    List<User> cred = userservice.findUserByEmail(user.getEmail()); 
+    model.addAttribute("cred", cred);
         return "user/profile";
     }
     

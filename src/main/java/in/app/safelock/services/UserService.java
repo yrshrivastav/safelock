@@ -23,4 +23,7 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    // new changes to show profile details
+    List<User> findUserByEmail(String email);
+
 }

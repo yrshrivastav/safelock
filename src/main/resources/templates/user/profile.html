@@ -60,51 +60,65 @@
                                     <th scope="col" class="px-6 py-3">Action</th>
                                   </tr>
                                 </thead> -->
-                                <tbody>
-                                  <tr data-th-object="${c}" th:each="c : ${cred}"
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tbody data-th-object="${c}" th:each="c : ${cred}"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                  
                                     <!-- ID -->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">ID</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{id}"></span>
                                     </td>
+                                  </tr>
                   
                                     <!-- Username -->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">Username</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{name}"></span>
                                     </td>
+                                  </tr>
                                     
                                     <!-- Email -->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">Email</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{email}"></span>
                                     </td>
+                                  </tr>
                                     
                                     <!-- Email Verified-->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">Email Verified</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{isEmailVerified}"></span>
                                     </td>
+                                  </tr>
                                     
                                     <!-- Phone-->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">Phone No</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{phoneNo}"></span>
                                     </td>
+                                  </tr>
                                     
                                     <!-- Provider-->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">Provider</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{provider}"></span>
                                     </td>
+                                  </tr>
 
                                     <!-- Active-->
+                                    <tr>
                                     <th scope="col" class="px-6 py-3">Enabled</th>
                                     <td class="px-6 py-4">
                                       <span data-th-text="*{isEnabled}"></span>
                                     </td>
                                   </tr>
+                                  
                                 </tbody>
                               </table>
                         </div>
