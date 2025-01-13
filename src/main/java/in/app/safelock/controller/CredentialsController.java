@@ -95,4 +95,13 @@ public class CredentialsController {
         return "redirect:user/credentials";
     }
 
+    @GetMapping("/edit")
+    public String edit() {
+        return "user/edit-profile";
+    }
+
+    @PostMapping("/edit")
+    public String update() {
+        return "user/edit-profile";
+    }
 }
