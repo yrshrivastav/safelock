@@ -9,4 +9,4 @@ Utilized HTML, CSS (Tailwind), and JavaScript for a responsive front-end.
 
 Managed data storage with PostgreSQL, ensuring performance and security. 
 
-Gained hands-on experience in full-stack development, secure coding practices, and data management. 
+Gained hands-on experience in full-stack development, secure coding practices, and data management
