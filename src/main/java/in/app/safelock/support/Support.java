@@ -9,9 +9,7 @@ public class Support {
     public static String getEmailOfLoggedInUser(Authentication authentication) {
 
         // agar email is password se login kiya hai to : email kaise nikalenge
-        if (authentication instanceof OAuth2AuthenticationToken) {
-
-            var aOAuth2AuthenticationToken = (OAuth2AuthenticationToken) authentication;
+        if (authentication instanceof OAuth2AuthenticationToken aOAuth2AuthenticationToken) {
             var clientId = aOAuth2AuthenticationToken.getAuthorizedClientRegistrationId();
 
             var oauth2User = (OAuth2User) authentication.getPrincipal();

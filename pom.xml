@@ -4,19 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.4</version>
+    
+		<relativePath/> 
 	</parent>
 	<groupId>in.app</groupId>
 	<artifactId>safelock</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>safelock</name>
 	<description>Password Manager and Generator</description>
+	
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+
+		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -70,10 +70,10 @@ public class CredentialsController {
 
     @GetMapping("/manage")
     public String manage(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
-            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
-            @RequestParam(value = "direction", defaultValue = "asc") String direction, Model model,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = AppConstants.PAGE_SIZE + "") int size,
+            @RequestParam(defaultValue = "name") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction, Model model,
             Authentication authentication) {
 
         // load all the user contacts

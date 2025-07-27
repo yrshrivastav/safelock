@@ -97,7 +97,7 @@ public class SafeLockController {
     }
 
     @PostMapping("/generator")
-    public String passwordGenerator(@RequestParam(name = "length", required = true) Integer length, Model model) {
+    public String passwordGenerator(@RequestParam(required = true) Integer length, Model model) {
         if (length != null) {
             String password = passwordGenerator.generateRandomPassword(length);
             model.addAttribute("password", password);
